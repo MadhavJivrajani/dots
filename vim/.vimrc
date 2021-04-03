@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 "enable color scheme
@@ -40,6 +41,12 @@ nnoremap <silent> <A-Right> :tabm +1<CR>
 "toggle all current buffers as tabs.
 let notabs = 0
 nnoremap <silent> <F8> :let notabs=!notabs<Bar>:if notabs<Bar>:tabo<Bar>:else<Bar>:tab ball<Bar>:tabn<Bar>:endif<CR>
+
+"coc.nvim config
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <silent><expr> <NUL> coc#refresh()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "===========NERDTree config===========
 nnoremap <leader>n :NERDTreeFocus<CR>
