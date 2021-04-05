@@ -107,6 +107,8 @@ autocmd BufNewFile,BufRead *.cpp setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.py setlocal noexpandtab tabstop=4 shiftwidth=4
 
+autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=4 shiftwidth=2
+
 "set keybindings for vim-go
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
