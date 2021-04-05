@@ -102,6 +102,11 @@ let g:go_highlight_generate_tags 	= 1
 "configure tab related settings
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 
+autocmd BufNewFile,BufRead *.cpp setlocal noexpandtab tabstop=4 shiftwidth=4
+
+autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.py setlocal noexpandtab tabstop=4 shiftwidth=4
+
 "set keybindings for vim-go
 map <C-n> :cnext<CR>
 map <C-m> :cprevious<CR>
