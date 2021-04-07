@@ -10,6 +10,13 @@ call plug#begin('~/.vim/plugged')
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'tmhedberg/SimpylFold'
+  Plug 'vim-scripts/indentpython.vim'
+  Plug 'vim-syntastic/syntastic'
+  Plug 'nvie/vim-flake8'
+  Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 call plug#end()
 
 "enable color scheme
@@ -19,6 +26,12 @@ colorscheme molokai
 
 "vim specific stuff
 nnoremap <SPACE> <Nop>
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
 let mapleader=" "
 
 set autowrite
@@ -28,6 +41,7 @@ set laststatus=2
 set statusline=%f
 set updatetime=100
 set encoding=UTF-8
+set clipboard=unnamed
 
 "tab related things
 set switchbuf=usetab,newtab
@@ -69,6 +83,9 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * silent NERDTreeMirror
 
+"SimpylFold config
+let g:SimpylFold_docstring_preview=1
+
 "Change default arrows
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
@@ -76,6 +93,7 @@ let g:NERDTreeDirArrowCollapsible = '-'
 "NERDtree with git config
 let g:NERDTreeGitStatusUntrackedFilesMode = 'all'
 let g:NERDTreeGitStatusShowClean = 1
+let NERDTreeIgnore=['\.pyc$', '\~$']
 
 "set go tooling options
 let g:go_fmt_command 		= "goimports"
@@ -99,15 +117,33 @@ let g:go_highlight_extra_types 		= 1
 let g:go_highlight_build_constraints 	= 1
 let g:go_highlight_generate_tags 	= 1
 
+"Python specific syntax stuff
+let python_highlight_all=1
+syntax on
+
 "configure tab related settings
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4 
 
 autocmd BufNewFile,BufRead *.cpp setlocal noexpandtab tabstop=4 shiftwidth=4
 
 autocmd BufNewFile,BufRead *.c setlocal noexpandtab tabstop=4 shiftwidth=4
-autocmd BufNewFile,BufRead *.py setlocal noexpandtab tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
 
 autocmd BufNewFile,BufRead *.json setlocal noexpandtab tabstop=4 shiftwidth=2
+autocmd BufNewFile,BufRead *.md setlocal noexpandtab tabstop=4 shiftwidth=2
+
+autocmd BufNewFile,BufRead *.y setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.l setlocal noexpandtab tabstop=4 shiftwidth=4
+
+"Flag unescessary whitespaces
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 "set keybindings for vim-go
 map <C-n> :cnext<CR>
