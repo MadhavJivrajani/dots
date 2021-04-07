@@ -23,6 +23,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'vim-syntastic/syntastic'
   Plug 'nvie/vim-flake8'
   Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+  Plug 'junegunn/vim-emoji'
 call plug#end()
 
 "enable color scheme
@@ -88,6 +89,9 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 
 " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * silent NERDTreeMirror
+
+"emoji config
+nnoremap <silent> <Leader><Bslash> :s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>:noh<CR>
 
 "SimpylFold config
 let g:SimpylFold_docstring_preview=1
