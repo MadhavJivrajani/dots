@@ -126,6 +126,5 @@ export PATH=$PATH:$GOPATH/bin
 export GOPATH=/home/maddy/gocode
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
-# if [ -t 1 ]; then
-#  exec zsh
-# fi
+
+PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)]\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '

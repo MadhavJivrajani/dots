@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
-  Plug 'tmhedberg/SimpylFold'
   Plug 'vim-scripts/indentpython.vim'
   Plug 'vim-syntastic/syntastic'
   Plug 'nvie/vim-flake8'
@@ -92,9 +91,6 @@ autocmd BufWinEnter * silent NERDTreeMirror
 
 "emoji config
 nnoremap <silent> <Leader><Bslash> :s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g<CR>:noh<CR>
-
-"SimpylFold config
-let g:SimpylFold_docstring_preview=1
 
 "Change default arrows
 let g:NERDTreeDirArrowExpandable = '+'
