@@ -56,6 +56,13 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+GIT_PS1_DESCRIBE_STYLE='contains'
+GIT_PS1_SHOWCOLORHINTS='y'
+GIT_PS1_SHOWDIRTYSTATE='y'
+GIT_PS1_SHOWSTASHSTATE='y'
+GIT_PS1_SHOWUNTRACKEDFILES='y'
+GIT_PS1_SHOWUPSTREAM='auto'
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -127,4 +134,4 @@ export GOPATH=/home/maddy/gocode
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] [$(git branch 2>/dev/null | grep "^*" | colrm 1 2)]\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
+PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] $(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
