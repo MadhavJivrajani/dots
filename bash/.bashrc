@@ -123,6 +123,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
+git_prompt() {
+	GIT_PROMPT=$(__git_ps1)
+	TRIMMED=${GIT_PROMPT:2:(-1)}
+	if [[ $TRIMMED ]]; then
+		echo -e "\uE0A0" [$TRIMMED] 2> /dev/null
+	fi
+}
+
 source /etc/environment
 export PATH=$PATH:~/.local/bin
 export PATH=$PATH:/snap/bin
@@ -134,4 +142,4 @@ export GOPATH=/home/maddy/gocode
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] $(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶\[\033[0m\] '
+PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] $(git_prompt)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[0m\] '
