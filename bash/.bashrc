@@ -149,7 +149,7 @@ user_host_prompt() {
 	USER_PROMPT="${FOREGROUND}$(whoami)"
 	HOST_PROMPT="${FOREGROUND}$(hostname)"
 	END_ARROW="${NEXT_BG}${ARROW_FG}\uE0B0"
-	echo -e "${BACKGROUND} ${FOREGROUND}⎈ ${USER_PROMPT}@${HOST_PROMPT} ${END_ARROW}" 2> /dev/null
+	echo -e "${BACKGROUND}${FOREGROUND}⎈ ${USER_PROMPT}@${HOST_PROMPT} ${END_ARROW}" 2> /dev/null
 }
 
 path_prompt() {
