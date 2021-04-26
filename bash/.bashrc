@@ -126,9 +126,51 @@ fi
 git_prompt() {
 	GIT_PROMPT=$(__git_ps1)
 	TRIMMED=${GIT_PROMPT:2:(-1)}
+
+	NC='\033[0m'
+
+	BACKGROUND='\033[45m'
+	FOREGROUND='\033[01;30m'
+	FOREGROUND_BG='\033[01;35m'
+	BRANCH='\uE0A0'
+
+	ARROW="${NC}${FOREGROUND_BG}\uE0B0"
 	if [[ $TRIMMED ]]; then
-		echo -e "\uE0A0" [$TRIMMED] 2> /dev/null
+		echo -e "${BACKGROUND}${FOREGROUND} ${BRANCH} ${TRIMMED} ${ARROW}" 2> /dev/null
 	fi
+}
+
+user_host_prompt() {
+	BACKGROUND='\033[42m'
+	FOREGROUND='\033[01;30m'
+	ARROW_FG='\033[01;32m'
+	NC='\033[0m'
+	NEXT_BG='\033[46m'
+	USER_PROMPT="${FOREGROUND}$(whoami)"
+	HOST_PROMPT="${FOREGROUND}$(hostname)"
+	END_ARROW="${NEXT_BG}${ARROW_FG}\uE0B0"
+	echo -e "${BACKGROUND} ${FOREGROUND}⎈ ${USER_PROMPT}@${HOST_PROMPT} ${END_ARROW}" 2> /dev/null
+}
+
+path_prompt() {
+	BACKGROUND='\033[46m'
+	NEXT_BG='\033[45m'
+
+	FOREGROUND='\033[01;30m'
+	ARROW_FG='\033[01;36m'
+	NC='\033[0m'
+	FOREGROUND_BG='\033[01;36m'
+	ARROW="${NC}${FOREGROUND_BG}\uE0B0"
+	PATH_PROMPT="${FOREGROUND}$(dirs +0)"
+
+	# check if pwd is a git repo and render
+	# prompt accordingly
+	GIT_PROMPT=$(__git_ps1)
+	TRIMMED=${GIT_PROMPT:2:(-1)}
+	if [[ $TRIMMED ]]; then
+		ARROW="${NEXT_BG}${ARROW_FG}\uE0B0"
+	fi
+	echo -e "${BACKGROUND} ${PATH_PROMPT} ${ARROW}"
 }
 
 source /etc/environment
@@ -142,4 +184,4 @@ export GOPATH=/home/maddy/gocode
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;32m\]@\[\033[0;32m\]\h \[\033[0;36m\]\w\[\033[0;35m\] $(git_prompt)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[0m\] '
+PS1='$(user_host_prompt)\[\033[0;36m\]$(path_prompt)\[\033[0;35m\]$(git_prompt)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[00m\] '
