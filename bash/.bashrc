@@ -184,4 +184,4 @@ export GOPATH=/home/maddy/gocode
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
 
-PS1='$(user_host_prompt)\[\033[0;36m\]$(path_prompt)\[\033[0;35m\]$(git_prompt)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[00m\] '
+PS1='\n$(user_host_prompt)\[\033[0;36m\]$(path_prompt)\[\033[0;35m\]$(git_prompt)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[00m\] '
