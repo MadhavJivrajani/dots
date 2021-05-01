@@ -161,7 +161,7 @@ path_prompt() {
 	NC='\033[0m'
 	FOREGROUND_BG='\033[01;36m'
 	ARROW="${NC}${FOREGROUND_BG}\uE0B0"
-	PATH_PROMPT="${FOREGROUND}$(dirs +0)"
+	PATH_PROMPT="${FOREGROUND}$(basename $(dirs +0))"
 
 	# check if pwd is a git repo and render
 	# prompt accordingly
