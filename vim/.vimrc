@@ -48,6 +48,7 @@ set statusline=%f
 set updatetime=100
 set encoding=UTF-8
 set clipboard=unnamed
+set mouse=a
 
 "tab related things
 set switchbuf=usetab,newtab
@@ -147,6 +148,8 @@ autocmd BufNewFile,BufRead *.md setlocal noexpandtab tabstop=4 shiftwidth=2
 
 autocmd BufNewFile,BufRead *.y setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.l setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.cpp setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.hpp setlocal noexpandtab tabstop=4 shiftwidth=4
 
 "Flag unescessary whitespaces
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
