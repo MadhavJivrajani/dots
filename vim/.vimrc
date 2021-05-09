@@ -23,6 +23,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'nvie/vim-flake8'
   Plug 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
   Plug 'junegunn/vim-emoji'
+  Plug 'Yggdroot/indentLine'
+  Plug 'pedrohdz/vim-yaml-folds'
+  Plug 'dense-analysis/ale'
 call plug#end()
 
 "enable color scheme
@@ -109,6 +112,14 @@ let g:go_auto_type_info 	= 1
 let g:go_auto_sameids 		= 1
 let g:go_play_open_browser 	= 0
 
+"yamllint options
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠ '
+let g:ale_lint_on_text_changed = 'never'
+
+set foldlevelstart=20
+
 "too slow for autosave
 "Use :GoMetaLint
 ""let g:go_metalinter_autosave = 1
@@ -150,6 +161,9 @@ autocmd BufNewFile,BufRead *.y setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.l setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.cpp setlocal noexpandtab tabstop=4 shiftwidth=4
 autocmd BufNewFile,BufRead *.hpp setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
+
 
 "Flag unescessary whitespaces
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
