@@ -123,6 +123,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+alias k=kubectl
+
 git_prompt() {
 	GIT_PROMPT=$(__git_ps1)
 	TRIMMED=${GIT_PROMPT:2:(-1)}
